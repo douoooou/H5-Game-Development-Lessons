@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas绘图基础（beginPath与closePath）</title>
+    <script type="text/javascript">
+        window.addEventListener('load', eventWindowLoaded, false);
+        function eventWindowLoaded() {
+            canvasApp();
+        }
+        
+        function canvasApp() {
+            var theCanvas = document.getElementById('canvas');
+            var context = theCanvas.getContext('2d');
+            drawLine(context);
+        }
+        function drawLine(ctx) {
+            ctx.strokeStyle = 'pink';
+            ctx.lineWidth = 7;
+            ctx.moveTo(10,10);
+            ctx.lineTo(200,10);
+            ctx.lineTo(200,120);
+            ctx.closePath();
+            ctx.stroke();
+
+            ctx.beginPath(); 
+            ctx.strokeStyle = 'blue';
+            ctx.lineWidth = 10;
+            ctx.moveTo(10,200);
+            ctx.lineTo(200,200);
+            ctx.lineTo(200,300);
+            ctx.closePath();
+            ctx.stroke();
+            
+        }
+
+    </script>
+</head>
+<body>
+<div>
+    <canvas id="canvas" width="500" height="500" style="border:solid #ccc 2px">
+        Your browser does not support the HTML 5 Canvas.
+    </canvas>
+</div>
+</body>
+</html>
