@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript">
+		window.onload = function eventWindowLoaded() {
+			canvasApp();
+		}
+
+		function canvasApp() {
+
+			function drawScreen() {
+				//绘制背景
+				context.fillStyle = '#EEEEEE';
+				context.fillRect(0, 0, theCanvas.width, theCanvas.height);
+				context.strokeStyle = '#000000';
+				context.strokeRect(1, 1, theCanvas.width - 2, theCanvas.height - 2);
+
+				//新位置
+				ball.x += xunits;
+				ball.y += yunits;
+
+				context.fillStyle = "#000000";
+				context.beginPath();
+				context.arc(ball.x, ball.y, 15, 0, Math.PI * 2, true);
+				context.closePath();
+				context.fill();
+
+				//动画循环
+				requestAnimationFrame(drawScreen);
+			}
+			var speed = 5;
+			var angle = 45;
+			var radians = angle * Math.PI / 180;
+			var xunits = Math.cos(radians) * speed;
+			var yunits = Math.sin(radians) * speed;
+			var ball = { x: 20, y: 20 };
+
+			theCanvas = document.getElementById('canvasOne');
+			context = theCanvas.getContext('2d');
+
+			// function gameLoop() {
+			// 		window.setTimeout(gameLoop, 20);
+			// 		drawScreen()	
+			// 	}
+			// gameLoop();
+
+			//频率为每秒60帧
+			var animationHandle = requestAnimationFrame(drawScreen);
+		}
+
+	</script>
+
+</head>
+
+<body>
+	<div style="position: absolute; top: 50px; left: 50px;">
+
+		<canvas id="canvasOne" width="500" height="500">
+			Your browser does not support the HTML 5 Canvas.
+		</canvas>
+	</div>
+
+</body>
+
+</html>
